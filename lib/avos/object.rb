@@ -56,7 +56,7 @@ module AVOS
 
     class << self
       def where(klass_name, query = {})
-        JSON.parse(AVOS.client.get("/classes/#{klass_name}", query).body)["results"].map do |data|
+        JSON.parse(AVOS.client.get("/classes/#{klass_name}", {where: query}).body)["results"].map do |data|
           AVOS::Object.new(klass_name, data, data["objectId"])
         end
       end
@@ -66,8 +66,8 @@ module AVOS
         object = AVOS::Object.new(klass_name, data, avos_id)
       end
 
-      def count(klass_name)
-        query = { "count" => 1, "limit" => 0 }
+      def count(klass_name, where = {})
+        query = { "count" => 1, "limit" => 0, "where" => where }
         res = AVOS.client.get("/classes/#{klass_name}", query)
         JSON.parse(res.body)["count"]
       end
