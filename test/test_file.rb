@@ -15,7 +15,8 @@ module AVOS
       set["number"] = "8110"
       set["image"] = @file
       set.save
-      avos_set = AVOS::Object.find("Set", set.avos_id)
+      query = AVOS::Query.new("Set")
+      avos_set = query.find(set.avos_id)
       avos_set["image"]["objectId"].must_equal @file["objectId"]
     end
   end

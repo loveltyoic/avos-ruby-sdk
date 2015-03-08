@@ -1,4 +1,4 @@
-# Avos
+# AVOS
 
 [LeanCloud SDK](https://cn.avoscloud.com/docs/rest_api.html) for Ruby
 
@@ -13,6 +13,15 @@ And then execute:
     $ bundle
 
 ## Usage
+
+### Configuration
+
+```ruby
+  AVOS.init do |avos|
+    avos.app_id = APP_ID
+    avos.app_key = APP_KEY
+  end
+```
 
 ### Object
 + Create Object
@@ -34,14 +43,18 @@ And then execute:
 ```ruby
   game_score.delete
 ```
-+ Query Object
+
+### Query
 
 ```ruby
-  AVOS::Object.find(game_score.avos_id)
+  
+  query = AVOS::Query.new("Set")
 
-  AVOS::Object.where("GameScore", {"playerName" => "Sean Plott"})
+  query.find(game_score.avos_id)
 
-  AVOS::Object.count("GameScore", {"cheatMode" => false})
+  query.where("GameScore", {"playerName" => "Sean Plott"})
+
+  query.count("GameScore", {"cheatMode" => false})
 ```
 ### File
 
