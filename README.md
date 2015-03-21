@@ -52,9 +52,9 @@ And then execute:
 
   query.find(game_score.avos_id)
 
-  query.where("GameScore", {"playerName" => "Sean Plott"})
+  query.where({"playerName" => "Sean Plott"})
 
-  query.count("GameScore", {"cheatMode" => false})
+  query.count({"cheatMode" => false})
 ```
 ### File
 
